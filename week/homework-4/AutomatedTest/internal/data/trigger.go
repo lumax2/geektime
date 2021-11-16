@@ -19,10 +19,10 @@ func NewTriggerRepo(data *Data, logger log.Logger) biz.TriggerRepo {
 	}
 }
 
-func (r *triggerRepo) CreateTrigger(ctx context.Context, g *biz.Greeter) error {
+func (r *triggerRepo) CreateTrigger(ctx context.Context, g *biz.Trigger) error {
 	return nil
 }
 
-func (r *triggerRepo) UpdateTrigger(ctx context.Context, g *biz.Greeter) error {
+func (r *triggerRepo) UpdateTrigger(ctx context.Context, g *biz.Trigger) error {
 	return nil
 }
