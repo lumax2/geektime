@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package api.trigger.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "HomeworkFour/api/trigger/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.trigger.v1";
+
+service Trigger {
+    // http api trigger automated test
+	rpc OnTrigger (OnTriggerRequest) returns (OnTriggerReply){
+        option (google.api.http) = {
+            get: "/onTrigger/{param}"
+        };
+	}
+}
+// Request must contain param
+message OnTriggerRequest {
+    string param = 1;
+}
+// Response contains automated test assertion
+message OnTriggerReply {
+    string message = 1;
+}
+

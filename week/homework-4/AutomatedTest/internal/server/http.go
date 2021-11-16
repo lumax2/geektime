@@ -2,6 +2,7 @@ package server
 
 import (
 	v1 "HomeworkFour/api/helloworld/v1"
+	pb "HomeworkFour/api/trigger/v1"
 	"HomeworkFour/internal/conf"
 	"HomeworkFour/internal/service"
 	"github.com/go-kratos/kratos/v2/log"
@@ -11,7 +12,7 @@ import (
 )
 
 // NewHTTPServer new a HTTP server.
-func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, logger log.Logger) *http.Server {
+func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, trigger *service.TriggerService,logger log.Logger) *http.Server {
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),
@@ -30,5 +31,6 @@ func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, logger log.L
 	srv := http.NewServer(opts...)
 	srv.HandlePrefix("/q/", openAPIhandler)
 	v1.RegisterGreeterHTTPServer(srv, greeter)
+	pb.RegisterTriggerHTTPServer(srv,trigger)
 	return srv
 }
